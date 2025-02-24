@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maukah kamu bersamaku untuk selamanya?</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> </head>
+<body>
+    <div class="container">
+        <h1>Maukah kamu bersamaku untuk selamanya?</h1>
+        <div class="buttons">
+            <button class="yes-button" onclick="handleYesClick()">Yes</button>
+            <button class="no-button" onclick="handleNoClick()">No</button>
+        </div>
+        <div class="gif_container">
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbW5lenZyZHI5OXM2eW95b3pmMG40cWVrMDhtNjVuM3A4dGNxa2g2dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/VM1fcpu2bKs1e2Kdbj/giphy.gif" alt="Cute GIF">
+        </div>
+
+        <div class="music-control" onclick="toggleMusic()" title="Play/Pause Music">
+            <i class="fas fa-volume-up"></i>
+        </div>
+
+        <audio id="bgMusic" loop>
+            <source src="nikzz.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    <script src="script.js"></script>
+    <style>
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .music-control i {
+            font-size: 24px;
+        }
+    </style>
+    <script>
+        const bgMusic = document.getElementById('bgMusic');
+        const musicControl = document.querySelector('.music-control i');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicControl.classList.remove('fa-volume-up');
+                musicControl.classList.add('fa-volume-mute');
+                isPlaying = false;
+            } else {
+                bgMusic.play();
+                musicControl.classList.remove('fa-volume-mute');
+                musicControl.classList.add('fa-volume-up');
+                isPlaying = true;
+            }
+        }
+
+        // Optional: Play music automatically on page load
+        window.onload = function() {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+            }).catch(error => {
+                console.error("Autoplay prevented:", error);
+                isPlaying = false;
+            });
+        };
+    </script>
+</body>
+</html>
